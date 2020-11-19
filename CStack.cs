@@ -21,45 +21,60 @@ namespace Inlamning_3_ra_kod
     public class CStack
     {
         public double X, Y, Z, T;
-        double[] vars = new double[8];
+
         public string entry;
         public string adress;
-
+        public int ListSize = 8; //A-H
+        public List<double> vars = new List<double>();
+        private string file_name = @"C:\Users\samka\progmet\molkfreecalc.clc";
         /* CONSTRUCTOR: CStack
-         * PURPOSE: create a new stack and init X, Y, Z, T and the text entry
+         * PURPOSE: create a new stack and init X, Y, Z, T, A-H and the text entry. Loads from file if it exists.
          * PARAMETERS: --
          */
         public CStack()
         {
 
             entry = "";
-            if (File.Exists(@"C:\Users\samka\progmet\molkfreecalc.clc"))
+            if (File.Exists(file_name))
             {
-                string[] lines = File.ReadAllLines(@"C:\Users\samka\progmet\molkfreecalc.clc");
-                X = double.Parse(lines[0]);
-                Y = double.Parse(lines[1]);
-                Z = double.Parse(lines[2]);
-                T = double.Parse(lines[3]);
+                string[] lines = File.ReadAllLines(file_name);
+                X = double.Parse(lines[0].Substring(2));
+                Y = double.Parse(lines[1].Substring(2));
+                Z = double.Parse(lines[2].Substring(2));
+                T = double.Parse(lines[3].Substring(2));
+                for (int i = 0; i < ListSize; i++)
+                {
+                    vars.Add(double.Parse(lines[i + 4].Substring(2)));
+                }
             }
             else
             {
                 X = Y = Z = T = 0;
+                for (int i = 0; i < ListSize; i++ )
+                {
+                    vars[i] = 0;
+                }
             }
 
         }
         /* METHOD: Exit
-         * PURPOSE: called on exit, prepared for saving
+         * PURPOSE: called on exit, saves variables to a file (with nice formatting ;)
          * PARAMETERS: --
          * RETURNS: --
          */
         public void Exit()
         {
-            string[] stack = new string[4];
-            stack[0] = X.ToString();
-            stack[1] = Y.ToString();
-            stack[2] = Z.ToString();
-            stack[3] = T.ToString();
-            File.WriteAllLines(@"C:\Users\samka\progmet\molkfreecalc.clc", stack);
+            string[] stack = new string[4+ListSize];
+            stack[0] = "X=" + X.ToString();
+            stack[1] = "Y=" + Y.ToString();
+            stack[2] = "Z=" + Z.ToString();
+            stack[3] = "T=" + T.ToString();
+            string[] letters = new string[8] { "A", "B", "C", "D", "E", "F", "G", "H" };
+            for (int i = 0; i < ListSize; i++)
+            {
+                stack[i+4] = letters[i] + "=" + vars[i].ToString();
+            }
+            File.WriteAllLines(file_name, stack);
         }
         /* METHOD: StackString
          * PURPOSE: construct a string to write out in a stack view
@@ -74,7 +89,8 @@ namespace Inlamning_3_ra_kod
         /* METHOD: VarString
          * PURPOSE: construct a string to write out in a variable list
          * PARAMETERS: --
-         * RETURNS: NOT YET IMPLEMENTED
+         * RETURNS: the string containing the values A-H with newlines 
+         *   between them. 
          */
         public string VarString()
         {
@@ -266,20 +282,20 @@ namespace Inlamning_3_ra_kod
             T = Z; Z = Y; Y = X; X = newX;
         }
         /* METHOD: SetAddress
-         * PURPOSE: 
+         * PURPOSE: Sets adress variable as the last variable-button pressed :)
          * PARAMETERS: string name - variable name
          * RETURNS: --
-         * FEATURES: NOT YET IMPLEMENTED
+         * FEATURES: Last button pressed is saved :)
          */
         public void SetAddress(string name)
         {
             adress = name;
         }
         /* METHOD: SetVar
-         * PURPOSE: 
+         * PURPOSE: Saves X variable for later use.
          * PARAMETERS: --
          * RETURNS: --
-         * FEATURES: NOT YET IMPLEMENTED
+         * FEATURES:  Saves X variable to A-H depending on what button was last pressed (adress)
          */
         public void SetVar()
         {
@@ -296,10 +312,10 @@ namespace Inlamning_3_ra_kod
             }
         }
         /* METHOD: GetVar
-         * PURPOSE: 
+         * PURPOSE: Gets A-H variable to X
          * PARAMETERS: --
          * RETURNS: --
-         * FEATURES: NOT YET IMPLEMENTED
+         * FEATURES: Rolls stack and copies chosen variable to X
          */
         public void GetVar()
         {
