@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Inlamning_3_ra_kod
 {
@@ -20,15 +21,31 @@ namespace Inlamning_3_ra_kod
     public class CStack
     {
         public double X, Y, Z, T;
+        double[] vars = new double[8];
         public string entry;
+        public string adress;
+
         /* CONSTRUCTOR: CStack
          * PURPOSE: create a new stack and init X, Y, Z, T and the text entry
          * PARAMETERS: --
          */
         public CStack()
         {
-            X = Y = Z = T = 0;
+
             entry = "";
+            if (File.Exists(@"C:\Users\samka\progmet\molkfreecalc.clc"))
+            {
+                string[] lines = File.ReadAllLines(@"C:\Users\samka\progmet\molkfreecalc.clc");
+                X = double.Parse(lines[0]);
+                Y = double.Parse(lines[1]);
+                Z = double.Parse(lines[2]);
+                T = double.Parse(lines[3]);
+            }
+            else
+            {
+                X = Y = Z = T = 0;
+            }
+
         }
         /* METHOD: Exit
          * PURPOSE: called on exit, prepared for saving
@@ -37,7 +54,12 @@ namespace Inlamning_3_ra_kod
          */
         public void Exit()
         {
-
+            string[] stack = new string[4];
+            stack[0] = X.ToString();
+            stack[1] = Y.ToString();
+            stack[2] = Z.ToString();
+            stack[3] = T.ToString();
+            File.WriteAllLines(@"C:\Users\samka\progmet\molkfreecalc.clc", stack);
         }
         /* METHOD: StackString
          * PURPOSE: construct a string to write out in a stack view
@@ -56,7 +78,9 @@ namespace Inlamning_3_ra_kod
          */
         public string VarString()
         {
-            return "insertme";
+            return $"{vars[0]}\n{vars[1]}\n{vars[2]}\n{vars[3]}\n" +
+                $"{vars[4]}\n{vars[5]}\n{vars[6]}\n{vars[7]}\n{adress}";
+
         }
         /* METHOD: SetX
          * PURPOSE: set X with overwrite
@@ -249,7 +273,7 @@ namespace Inlamning_3_ra_kod
          */
         public void SetAddress(string name)
         {
-
+            adress = name;
         }
         /* METHOD: SetVar
          * PURPOSE: 
@@ -259,7 +283,17 @@ namespace Inlamning_3_ra_kod
          */
         public void SetVar()
         {
-
+            switch (adress)
+            {
+                case "A": vars[0] = X; break;
+                case "B": vars[1] = X; break;
+                case "C": vars[2] = X; break;
+                case "D": vars[3] = X; break;
+                case "E": vars[4] = X; break;
+                case "F": vars[5] = X; break;
+                case "G": vars[6] = X; break;
+                case "H": vars[7] = X; break;
+            }
         }
         /* METHOD: GetVar
          * PURPOSE: 
@@ -269,7 +303,17 @@ namespace Inlamning_3_ra_kod
          */
         public void GetVar()
         {
-
+            switch (adress)
+            {
+                case "A": RollSetX(vars[0]); break;
+                case "B": RollSetX(vars[1]); break;
+                case "C": RollSetX(vars[2]); break;
+                case "D": RollSetX(vars[3]); break;
+                case "E": RollSetX(vars[4]); break;
+                case "F": RollSetX(vars[5]); break;
+                case "G": RollSetX(vars[6]); break;
+                case "H": RollSetX(vars[7]); break;
+            }
         }
     }
 }

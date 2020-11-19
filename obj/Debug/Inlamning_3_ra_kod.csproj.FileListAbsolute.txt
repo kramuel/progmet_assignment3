@@ -1,0 +1,15 @@
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\bin\Debug\Inlamning_3_ra_kod.exe.config
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\bin\Debug\Inlamning_3_ra_kod.exe
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\bin\Debug\Inlamning_3_ra_kod.pdb
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\Inlamning_3_ra_kod.csprojAssemblyReference.cache
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\MainWindow.g.cs
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\App.g.cs
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\Inlamning_3_ra_kod_MarkupCompile.cache
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\Inlamning_3_ra_kod_MarkupCompile.lref
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\MainWindow.baml
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\Inlamning_3_ra_kod.g.resources
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\Inlamning_3_ra_kod.Properties.Resources.resources
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\Inlamning_3_ra_kod.csproj.GenerateResource.cache
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\Inlamning_3_ra_kod.csproj.CoreCompileInputs.cache
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\Inlamning_3_ra_kod.exe
+C:\Users\samka\source\repos\Ovningar\progmet_assignment3\obj\Debug\Inlamning_3_ra_kod.pdb
